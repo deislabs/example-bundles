@@ -7,7 +7,7 @@ mychart=/cnab/app/charts/alpine
 case $action in
     install)
         echo "Installing local chart"
-        helm install --dry-run -n $name $mychart
+        helm install --dry-run --debug -n $name $mychart
         ;;
     uninstall)
         echo "uninstall action"
