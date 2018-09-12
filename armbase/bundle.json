@@ -1,0 +1,33 @@
+{
+    "name": "armbase",
+    "version": "0.1.0",
+    "invocationImage": {
+        "imageType": "docker",
+        "image": "technosophos/armbase:0.1.0"
+    },
+    "images": [],
+    "parameters": {
+        "azure_resource_group": {
+            "defaultValue": "armbase-default",
+            "type": "string"
+        },
+        "azure_location": {
+            "defaultValue": "useast",
+            "type": "string"
+        }
+    },
+    "credentials": {
+        "tenant_id": {
+            "env": "AZURE_TENANT_ID"
+        },
+        "client_id": {
+            "env": "AZURE_CLIENT_ID"
+        },
+        "client_secret": {
+            "env": "AZURE_CLIENT_SECRET"
+        },
+        "subscription_id": {
+            "env": "AZURE_SUBSCRIPTION_ID"
+        }
+    }
+}

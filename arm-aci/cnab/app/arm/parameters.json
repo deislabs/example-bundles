@@ -1,0 +1,8 @@
+{
+  "name": {
+    "value": "acilinuxpublicipcontainergroup"
+  },
+  "image": {
+    "value": "microsoft/aci-helloworld"
+  }
+}
