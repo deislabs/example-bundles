@@ -1,0 +1,9 @@
+{
+    "name": "aks-terraform",
+    "version": "0.1.0",
+    "parameters": {},
+    "invocationImage": {
+        "imageType": "docker",
+        "image": "cnab/aks-terraform:latest"
+    }
+}
