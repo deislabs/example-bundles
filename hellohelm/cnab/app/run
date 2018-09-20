@@ -4,12 +4,13 @@ action=$CNAB_ACTION
 name=$CNAB_INSTALLATION_NAME 
 mychart=/cnab/app/charts/alpine
 greeting=${CNAB_P_GREETING:-"Hi"}
+ns=${CNAB_P_NAMESPACE:-"duffledemo"}
 
 echo "[== $greeting Duffle user ==]"
 case $action in
     install)
         echo "Installing local chart"
-        helm install --dry-run --debug -n $name $mychart
+        helm install --namespace $ns -n $name $mychart
         ;;
     uninstall)
         echo "uninstall action"
@@ -17,10 +18,11 @@ case $action in
         ;;
     upgrade)
         echo "Upgrade action"
-        helm upgrade $name $mychart
+        helm upgrade --namespace $ns $name $mychart
         ;;
     status)
         echo "Status action"
+        helm history $name
         helm status $name
         ;;
     *)
