@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+action=$CNAB_ACTION
+name=$CNAB_INSTALLATION_NAME
+ANSIBLE_PARAMS=""
+
+if [[ ""$CNAB_P_CHECK == "true" ]]; then
+    $ANSIBLE_PARAMS="--check"
+fi
+
+case $action in
+    install|upgrade)
+        echo "Running 'install.yaml' playbook"
+        ansible-playbook $ANSIBLE_PARAMS /cnab/app/playbooks/install.y?ml
+        ;;
+    uninstall)
+        echo "Running 'uninstall.yaml' playbook"
+        ansible-playbook $ANSIBLE_PARAMS /cnab/app/playbooks/uninstall.y?ml
+        ;;
+    status)
+        echo "Status action"
+        ;;
+    *)
+        echo "No action for $action"
+        ;;
+esac
+echo "Action $action complete for $name"

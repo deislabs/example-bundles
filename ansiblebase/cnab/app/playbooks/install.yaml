@@ -1,0 +1,12 @@
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+  - name: Create a resource group
+    azure_rm_resourcegroup:
+      name: ansible-cnab-test
+      location: westus
+      tags:
+          testing: testing
+          delete: never

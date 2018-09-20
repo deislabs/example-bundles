@@ -1,0 +1,37 @@
+{
+    "name": "ansiblebase",
+    "version": "0.1.0",
+    "invocationImage": {
+        "imageType": "docker",
+        "image": "cnab/ansiblebase:latest"
+    },
+    "images": [],
+    "parameters": {
+        "azure_resource_group": {
+            "defaultValue": "armbase-default",
+            "type": "string"
+        },
+        "azure_location": {
+            "defaultValue": "useast",
+            "type": "string"
+        },
+        "check": {
+            "defaultValue": false,
+            "type": "boolean"
+        }
+    },
+    "credentials": {
+        "tenant_id": {
+            "env": "AZURE_TENANT"
+        },
+        "client_id": {
+            "env": "AZURE_CLIENT_ID"
+        },
+        "client_secret": {
+            "env": "AZURE_SECRET"
+        },
+        "subscription_id": {
+            "env": "AZURE_SUBSCRIPTION_ID"
+        }
+    }
+}
