@@ -1,0 +1,41 @@
+#!/bin/sh
+export KUBECONFIG="/root/.kube/config"
+action=$CNAB_ACTION
+name=$CNAB_INSTALLATION_NAME 
+mychart="stable/wordpress"
+greeting=${CNAB_P_GREETING:-"Hi! Let's make installing wordpress in the cloud even easier!"}
+dbhost=$MYSQL_HOST
+dbuser=$MYSQL_USER
+dbpassword=$MYSQL_PASSWORD
+
+echo "[== $greeting Duffle user ==]"
+case $action in
+    install)
+        echo "This installation assumes you already have an AKS cluster"
+        echo "Configuring helm to easily install apps on your AKS cluster"
+        helm init --client-only
+
+        echo "This installation assumes remote DB is running"
+
+        echo "Installing remote chart with connection to Azure MySQL"
+        helm install -n $name $mychart --set externalDatabase.host=$dbhost,externalDatabase.user=$dbuser,externalDatabase.password=$dbpassword,mariadb.enabled=false
+
+        ;;
+    uninstall)
+        echo "uninstall action"
+        helm delete --purge $name
+        ;;
+    upgrade)
+        echo "Upgrade action"
+        helm upgrade $name $mychart
+       #TODO: need to also be able to pass in updated values from params
+        ;;
+    status)
+        echo "Status action"
+        helm status $name
+        ;;
+    *)
+    echo "No action for $action"
+    ;;
+esac
+echo "Action $action complete for $name"
