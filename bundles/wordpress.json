@@ -1,0 +1,11 @@
+{
+    "name": "wordpress-bundle",
+    "version": "0.1.0",
+    "invocationImage": {
+        "imageType": "docker",
+        "image": "michellenoorali/wordpress-bundle:0.1.0"
+    },
+    "images": null,
+    "parameters": null,
+    "credentials": null
+}
