@@ -1,0 +1,15 @@
+{
+    "name": "helloworld",
+    "version": "0.1.1",
+    "invocationImage": {
+        "imageType": "docker",
+        "image": "cnab/helloworld:0.1.1"
+      },
+    "images": [],
+    "parameters": {
+        "port": {
+            "defaultValue": 8080,
+            "type": "int"
+        }
+    }
+}
