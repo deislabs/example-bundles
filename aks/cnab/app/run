@@ -1,0 +1,78 @@
+#!/bin/sh
+set -e
+
+export AZURETOKENS="/root/.azure/accessTokens.json"
+action=$CNAB_ACTION
+name=$CNAB_INSTALLATION_NAME 
+greeting=${CNAB_P_GREETING:-"Hi! Let's create an AKS cluster, install helm, and kube-lego"}
+
+echo "[== $greeting Duffle user ==]"
+case $action in
+    install)
+        # You can either mount your azure tokens or use an azure service principal to login
+        #
+        # az login --service-principal -u $APP_ID -p $APP_ID_PASSWORD --tenant $TENANT_ID
+
+        echo "Creating resource group"
+        az group create --name $CNAB_P_RESOURCE_GROUP --location eastus
+
+        echo "Creating 1 node AKS cluster in $CNAB_P_RESOURCE_GROUP resource group"
+        echo "This may take a while so go get a coffee treat yoself"
+        echo "or give someone a compliment or give your mom a call"
+        echo "or checkout your AKS cluster provisioning in the Azure portal!"
+        az aks create --resource-group $CNAB_P_RESOURCE_GROUP --name duffle-aks --node-count 1 --enable-addons monitoring --generate-ssh-keys
+
+        az aks get-credentials --resource-group $CNAB_P_RESOURCE_GROUP --name duffle-aks
+        echo "Installing kubectl"
+        az aks install-cli #TODO: move this to Dockerfile
+
+        echo "Waiting for nodes to come up"
+        get_nodes () { kubectl get nodes ; }
+
+        while get_nodes ; ret=$? ; [ $ret -ne 0 ]; do 
+          echo "cluster not ready. go get a coffee. treat yoself"
+          sleep 1m
+        done
+
+        echo "Configuring helm, the package manager Kubernetes"
+        kubectl create -f /cnab/app/rbac-config.yaml
+        helm init --service-account tiller --upgrade --wait
+        echo "You can use helm to install and manage applications on Kubernetes"
+
+        echo "Installing nginx ingress controller in your cluster"
+        helm install -n nginx stable/nginx-ingress --namespace kube-system
+
+        #get service IP
+        external_ip=""
+        while [ -z $external_ip ]; do
+          echo "Waiting for end point..."
+          external_ip=$(kubectl --namespace kube-system get svc "nginx-nginx-ingress-controller" --template="{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}")
+          [ -z "$external_ip" ] && sleep 10
+        done
+        echo 'End point ready:' && echo $external_ip
+
+        echo "Creating a DNS a record to point domain at nginx loadbalancer"
+        az network dns record-set a add-record --resource-group duffle-demo --zone-name $CNAB_P_DOMAIN --record-set-name @ --ipv4-address $external_ip
+        echo "$CNAB_P_DOMAIN now points to $external_ip"
+
+        echo "Installing kube-lego to manage certificates"
+        helm install stable/kube-lego --namespace kube-system --set config.LEGO_EMAIL=$CNAB_P_LEGO_EMAIL,config.LEGO_URL=https://acme-v01.api.letsencrypt.org/directory
+
+        echo "You're all set! You've got an AKS cluster configured with Helm and certificate management!!"
+
+        ;;
+    uninstall)
+        echo "uninstall action"
+        az group delete $CNAB_P_RESOURCE_GROUP
+        ;;
+    upgrade)
+        echo "Upgrade action"
+        ;;
+    status)
+        echo "Status action"
+        ;;
+    *)
+    echo "No action for $action"
+    ;;
+esac
+echo "Action $action complete for $name"
