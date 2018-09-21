@@ -1,0 +1,34 @@
+#!/bin/sh
+set -e
+
+action=$CNAB_ACTION
+name=$CNAB_INSTALLATION_NAME 
+tfdir=/cnab/app/tf/
+
+cd $tfdir
+terraform init
+
+export TF_VAR_installation_name=$name
+
+case $action in
+    install)
+        echo "Applying Terraform template"
+        terraform apply -auto-approve -input=false
+        ;;
+    uninstall)
+        echo "Destroying Terraform template"
+        terraform destroy -auto-approve
+        ;;
+    upgrade)
+        echo "Applying Terraform template"
+        terraform apply -auto-approve -input=false
+        ;;
+    status)
+        echo "Status action"
+        terraform plan
+        ;;
+    *)
+    echo "No action for $action"
+    ;;
+esac
+echo "Action $action complete for $name"
