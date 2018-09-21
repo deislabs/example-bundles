@@ -28,7 +28,11 @@ cxbuild:
 .PHONY: docker-build
 docker-build: cxbuild
 docker-build:
-	docker build -t technosophos/armbase:0.1.0 .
+	docker build -t cnab/armbase:0.1.0 .
+	docker tag cnab/armbase:0.1.0 cnab/armbase:latest
+
+docker-push:
+	docker push cnab/armbase
 
 .PHONY: test
 test:
