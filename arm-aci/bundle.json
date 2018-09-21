@@ -5,7 +5,19 @@
         "imageType": "docker",
         "image": "technosophos/arm-aci:0.1.0"
     },
-    "images": [],
+    "images": [
+        {
+            "name": "microsoft/aci-helloworld:latest",
+            "digest": "sha256:a3b2eb140e6881ca2c4df4d9c97bedda7468a5c17240d7c5d30a32850a2bc573",
+            "uri": "urn:image1uri",
+            "refs": [
+                {
+                    "path": "cnab/app/arm/template.json",
+                    "field": "parameters.image.defaultValue"
+                }
+            ]
+        }
+    ],
     "parameters": {
         "azure_resource_group": {
             "defaultValue": "armbase-default",
