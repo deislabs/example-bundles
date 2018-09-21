@@ -1,0 +1,11 @@
+{
+    "name": "k8sbase",
+    "version": "0.1.0",
+    "invocationImage": {
+        "imageType": "docker",
+        "image": "cnab/k8sbase:latest"
+    },
+    "images": [],
+    "parameters": {},
+    "credentials": {}
+}
