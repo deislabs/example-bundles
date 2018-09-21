@@ -1,0 +1,11 @@
+{
+    "name": "makebase",
+    "version": "0.1.0",
+    "invocationImage": {
+        "imageType": "docker",
+        "image": "cnab/makebase:latest"
+    },
+    "images": [],
+    "parameters": {},
+    "credentials": {}
+}
