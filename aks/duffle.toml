@@ -1,0 +1,3 @@
+name = "aks-bundle"
+registry = "michellenoorali"
+components = ["cnab"]

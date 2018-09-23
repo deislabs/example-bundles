@@ -1,0 +1,22 @@
+name: example-aks-creds
+credentials:
+  - name: azure_sub
+    source:
+      env: AZURE_SUB
+    destination:
+      env: SUBSCRIPTION
+  - name: azure_tokens
+    source:
+      path: "$HOME/.azure/accessTokens.json"
+    destination:
+      path: "/root/.azure/accessTokens.json"
+  - name: azure_profiles
+    source:
+      path: "$HOME/.azure/azureProfile.json"
+    destination:
+      path: "/root/.azure/azureProfile.json"
+  - name: azure_cloud_config
+    source:
+      path: "$HOME/.azure/clouds.config"
+    destination:
+      path: "/root/.azure/clouds.config"
