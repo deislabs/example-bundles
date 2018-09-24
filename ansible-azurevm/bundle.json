@@ -1,0 +1,29 @@
+{
+    "name": "ansible-azurevm",
+    "version": "0.1.0",
+    "invocationImage": {
+        "imageType": "docker",
+        "image": "cnab/ansible-azurevm:latest"
+    },
+    "images": [],
+    "parameters": {
+        "check": {
+            "defaultValue": false,
+            "type": "boolean"
+        }
+    },
+    "credentials": {
+        "tenant_id": {
+            "env": "AZURE_TENANT"
+        },
+        "client_id": {
+            "env": "AZURE_CLIENT_ID"
+        },
+        "client_secret": {
+            "env": "AZURE_SECRET"
+        },
+        "subscription_id": {
+            "env": "AZURE_SUBSCRIPTION_ID"
+        }
+    }
+}
