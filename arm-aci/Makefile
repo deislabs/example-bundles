@@ -1,4 +1,4 @@
 
 .PHONY: docker-build
 docker-build:
-	docker build -t technosophos/arm-aci:0.1.0 .
+	docker build -t cnab/arm-aci:0.1.0 .
