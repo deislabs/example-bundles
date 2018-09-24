@@ -3,11 +3,17 @@
     "version": "0.1.0",
     "invocationImages": [
         {
-        "imageType": "docker",
-        "image": "technosophos/arm-aci:0.1.0"
+            "imageType": "docker",
+            "image": "technosophos/arm-aci:0.1.0"
         }
     ],
-    "images": [],
+    "images": [
+        {
+            "imageType": "docker",
+            "image": "microsoft/aci-helloworld",
+            "digest": "sha256:a3b2eb140e6881ca2c4df4d9c97bedda7468a5c17240d7c5d30a32850a2bc573"
+        }
+    ],
     "parameters": {
         "azure_resource_group": {
             "defaultValue": "armbase-default",
