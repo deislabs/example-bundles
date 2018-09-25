@@ -1,5 +1,5 @@
 {
-    "name": "aks-bundle",
+    "name": "aks",
     "version": "0.2.0",
     "invocationImage": {
         "imageType": "docker",
