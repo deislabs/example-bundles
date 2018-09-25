@@ -1,0 +1,3 @@
+name = "wordpress"
+registry = "michellenoorali"
+components = ["cnab"]
