@@ -1,7 +1,12 @@
 {
     "name": "terraform",
     "version": "0.1.0",
-    "parameters": {},
+    "parameters": {
+        "backend": {
+            "type": "boolean",
+            "defaultValue": false
+        }
+    },
     "invocationImage": {
         "imageType": "docker",
         "image": "cnab/terraform:latest"
