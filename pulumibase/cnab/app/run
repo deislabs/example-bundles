@@ -18,12 +18,12 @@ case $action in
         pulumi up --non-interactive
         ;;
     uninstall)
-        echo "Running pulumi destroy"
-        pulumi destroy --non-interactive
+        echo "Uninstall action currently unavailable for Pulumi"
+        #pulumi destroy --non-interactive
         ;;
     upgrade)
-        echo "Running pulumi up"
-        pulumi up --non-interactive
+        echo "Upgrade action currently unavailable for Pulumi"
+        #pulumi up --non-interactive
         ;;
     status)
         echo "Status action currently unavailable for Pulumi"
