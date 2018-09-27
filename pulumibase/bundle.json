@@ -1,0 +1,8 @@
+{
+    "name": "pulumibase",
+    "version": "0.1.0",
+    "invocationImage": {
+        "imageType": "docker",
+        "image": "cnab/pulumibase:latest"
+    }
+}

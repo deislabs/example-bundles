@@ -1,0 +1,5 @@
+name: pulumi-cnab
+runtime: nodejs
+description: A minimal Kubernetes Typescript Pulumi program to showcase a CNAB bundle
+template:
+  description: A minimal Kubernetes TypeScript Pulumi program

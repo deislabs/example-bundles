@@ -1,0 +1,35 @@
+#!/bin/sh
+set -e
+
+action=$CNAB_ACTION
+name=$CNAB_INSTALLATION_NAME
+pulumidir=/cnab/app/pulumi/
+
+export KUBECONFIG=$kubeconfig
+
+cd $pulumidir
+pulumi login --local
+pulumi stack init cnab-test
+pulumi plugin install
+
+case $action in
+    install)
+        echo "Running pulumi up"
+        pulumi up --non-interactive
+        ;;
+    uninstall)
+        echo "Running pulumi destroy"
+        pulumi destroy --non-interactive
+        ;;
+    upgrade)
+        echo "Running pulumi up"
+        pulumi up --non-interactive
+        ;;
+    status)
+        echo "Status action currently unavailable for Pulumi"
+        ;;
+    *)
+    echo "No action for $action"
+    ;;
+esac
+echo "Action $action complete for $name"
