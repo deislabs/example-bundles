@@ -39,10 +39,12 @@
             "defaultValue": "aksterraformduffle"
         }
     },
-    "invocationImage": {
+    "invocationImages": [
+        {
         "imageType": "docker",
         "image": "cnab/aks-terraform:latest"
-    },
+        }
+    ],
     "credentials": {
         "tenant_id": {
             "env": "TF_VAR_tenant_id"
