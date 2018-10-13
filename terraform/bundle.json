@@ -7,10 +7,12 @@
             "defaultValue": false
         }
     },
-    "invocationImage": {
+    "invocationImages": [
+        {
         "imageType": "docker",
         "image": "cnab/terraform:latest"
-    },
+        }
+    ],
     "credentials": {
         "tenant_id": {
             "env": "TF_VAR_tenant_id"
