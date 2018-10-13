@@ -7,6 +7,7 @@
         "image": "cnab/helloworld:0.1.1"
       }
     ],
+    "images": [],
     "parameters": {
         "port": {
             "defaultValue": 8080,
