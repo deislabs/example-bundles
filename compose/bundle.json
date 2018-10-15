@@ -1,10 +1,12 @@
 {
     "name": "compose",
     "version": "0.1.0",
-    "invocationImage": {
+    "invocationImages": [
+        {
         "imageType": "docker",
         "image": "cnab/compose:latest"
-    },
+        }
+    ],
     "images": [],
     "parameters": {},
     "credentials": {}

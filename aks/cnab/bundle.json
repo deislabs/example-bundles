@@ -1,10 +1,12 @@
 {
     "name": "aks",
     "version": "0.2.0",
-    "invocationImage": {
+    "invocationImages": [
+      {
         "imageType": "docker",
         "image": "michellenoorali/aks-bundle:0.2.0"
-    },
+      }
+    ],
     "images": null,
     "parameters": {
       "domain": {

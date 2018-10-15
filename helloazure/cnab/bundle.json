@@ -2,8 +2,10 @@
     "name": "helloazure",
     "version": "0.1.0",
     "parameters": {},
-    "invocationImage": {
+    "invocationImages": [
+        {
         "imageType": "azure-image",
         "image": "duffle-dev/duffle-vm-example-0.1.1"
     }
+]
 }
