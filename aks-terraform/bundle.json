@@ -6,6 +6,10 @@
             "type": "string",
             "defaultValue": "East US"
         },
+        "kubernetes_version": {
+            "type": "string",
+            "defaultValue": "1.11.3"
+        },
         "agent_count": {
             "type": "int",
             "defaultValue": 1

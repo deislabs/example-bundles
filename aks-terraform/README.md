@@ -65,6 +65,7 @@ duffle install aks-tf -c my_azure_creds -f bundle.json -s backend_storage_accoun
 
 Relevant to the AKS cluster being created:
   * `location`
+  * `kubernetes_version`
   * `agent_count`
   * `dns_prefix`
   * `cluster_name`
