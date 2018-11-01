@@ -5,6 +5,8 @@ variable "tenant_id" {}
 
 variable "subscription_id" {}
 
+variable "kubernetes_version" {}
+
 variable "agent_count" {
     default = 1
 }
