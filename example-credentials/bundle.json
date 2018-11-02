@@ -1,0 +1,23 @@
+{
+    "name": "example-credentials",
+    "version": "0.0.1",
+    "invocationImages": [
+        {
+        "imageType": "docker",
+        "image": "cnab/example-credentials:0.1.0"
+      }
+    ],
+    "images": [],
+    "credentials": {
+        "secret1": {
+            "env" :"SECRET_ONE"
+        },
+        "secret2": {
+            "path": "/var/secret_two/data.txt"
+        },
+        "secret3": {
+            "env": "SECRET_THREE",
+            "path": "/var/secret_three/data.txt"
+        }
+    }
+}
