@@ -1,0 +1,49 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+{
+  "name": "example-parameters",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": null,
+  "maintainers": null,
+  "invocationImages": [
+    {
+      "imageType": "docker",
+      "image": "cnab/example-run:0.1.0"
+    }
+  ],
+  "images": [],
+  "actions": {
+    "greet": {
+      "Modifies": false
+    },
+    "migrate": {
+      "Modifies": true
+    }
+  },
+  "parameters": {
+    "greeting": {
+      "type": "string",
+      "defaultValue": "hello",
+      "metadata": {
+        "description": "this will be in $GREETING"
+      }
+    }
+  },
+  "credentials": null,
+  "files": null
+}
+-----BEGIN PGP SIGNATURE-----
+
+wsDcBAEBCAAQBQJb2yViCRCZbwPRjzr3SAAAEZEMAASmWCte5n8tdvBHOyjbLeez
+u9A1mlEsJqWjnddH4iX4Pnun6nBT6MmPPXEKuPqMuH/Obzr0b8C7r5FV1RuAFB1C
++JvaVi0yhzJ8YCARjdv+Ltdw5wW17+5EFnXUHsu5PH1Blf1rBvFVAJb2eO4rYo1q
+FHGWkB1GFJwLvjK3Yre25FswIsFUaUyThMdxtijlEnRgMKtqJuwR3rpUWBgyi8pS
+Gj3aAYuXcEL08U5G+ZcEGH+46DKUon9K95ltb4dhzjIdJR4Y3XR8M9tIGhpulk14
+vqAA91+Xr4Ix8gVI3tos6jwVtaBEWaS7DlyYC/kpyHt6wo69lH6mQQoSSbT8b9TI
+Y0Wt3XZT2ACgXzPOSEypKkkBKk7DcDsOqhP5CZZPno+6h7mPZ9cltCfDJ4sUjyPr
+jDKNJMFwZEzC8Rixm4/s9j1A3k/fn7CcQvr0sv3z8cK+ln3A6uUMYpdIvWQjF7/a
+Nij+9c71GfqPQNy1NKmVPB9HT/DhczIlMi6gRhq07A==
+=okYB
+-----END PGP SIGNATURE-----
