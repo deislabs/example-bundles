@@ -24,7 +24,7 @@ var authorizer = authN()
 
 func main() {
 	subscriptionID := os.Getenv("AZURE_SUBSCRIPTION_ID")
-	action := envOr("CNAB_ACTION", "install")
+	action = envOr("CNAB_ACTION", "install")
 	loc = envOr("AZURE_LOCATION", "eastus")
 	groupName = envOr("AZURE_RESOURCE_GROUP", "mytestgroup")
 	deploymentName = envOr("CNAB_INSTALLATION_NAME", "testdep")
@@ -103,7 +103,7 @@ func destroyGroup(name, subID string) error {
 		return err
 	}
 
-	return res.WaitForCompletion(context.TODO(), client.Client)
+	return res.WaitForCompletionRef(context.TODO(), client.Client)
 }
 
 func createDeployment(group, dep, subID string) error {
@@ -134,5 +134,5 @@ func createDeployment(group, dep, subID string) error {
 	if err != nil {
 		return err
 	}
-	return res.WaitForCompletion(context.TODO(), client.Client)
+	return res.WaitForCompletionRef(context.TODO(), client.Client)
 }

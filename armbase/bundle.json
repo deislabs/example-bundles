@@ -4,7 +4,7 @@
     "invocationImages": [
         {
         "imageType": "docker",
-        "image": "technosophos/armbase:0.1.0"
+        "image": "cnab/armbase:0.1.0"
         }
     ],
     "images": [],
