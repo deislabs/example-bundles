@@ -5,7 +5,8 @@ This bundle exhibits how to use credentials to pass confidential information int
 To build this demo:
 
 ```
-$ make build
+$ duffle key sign bundle.json
+$ make docker-build
 ```
 
 ## Using This Bundle
