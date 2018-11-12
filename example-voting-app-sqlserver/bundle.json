@@ -1,0 +1,13 @@
+{
+    "name": "example-voting-app-sqlserver",
+    "version": "0.1.0",
+    "invocationImages": [
+        {
+        "imageType": "docker",
+        "image": "cnab/example-voting-app-sqlserver:latest"
+        }
+    ],
+    "images": [],
+    "parameters": {},
+    "credentials": {}
+}
