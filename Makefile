@@ -35,7 +35,7 @@ endif
 
 .PHONY: docker-build
 docker-build: check-bundle
-	docker build -t $(DOCKER_REGISTRY)/$(BUNDLE):$(IMAGE_TAG) ${BUNDLE}
+	docker build -t $(DOCKER_REGISTRY)/$(BUNDLE):$(IMAGE_TAG) ${BUNDLE}/cnab
 
 .PHONY: docker-run
 docker-run: check-bundle
@@ -58,7 +58,7 @@ define all
 endef
 
 define docker-all
-	$(call all,Dockerfile,$(1))
+	$(call all,cnab/Dockerfile,$(1))
 endef
 
 define bundle-all
