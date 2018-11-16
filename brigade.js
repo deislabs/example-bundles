@@ -2,12 +2,14 @@ const { events, Job, Group } = require("brigadier")
 
 const projectName = "bundles"
 
-function test(e, p) {
+function test(e, project) {
   var test = new Job(`${projectName}-test`, "docker");
 
   test.tasks = [
     "apk add --update --no-cache make",
-    "make test-functional-all"
+    `docker login ${project.secrets.acrRegistryHost} -u ${project.secrets.acrRegistryUser} -p ${project.secrets.acrRegistryToken}`,
+    "cd /src",
+    "SHELL=/bin/sh make test-functional-all"
   ];
 
   return test
@@ -118,7 +120,7 @@ function dockerPublish(project, gitTag, imageTag) {
 }
 
 events.on("exec", (e, p) => {
-  return test(e, p).run()
+  test(e, p).run()
 })
 
 events.on("check_suite:requested", runSuite)

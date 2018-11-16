@@ -8,14 +8,14 @@ GIT_TAG         := $(shell git describe --tags --always)
 VERSION         ?= ${GIT_TAG}
 IMAGE_TAG       ?= $(VERSION)
 BUNDLE          ?=
-# TODO: change to official
-DUFFLE_IMG      ?= quay.io/vdice/duffle:latest
+# TODO: change to brigade.azurecr.io
+DUFFLE_IMG      ?= vadice.azurecr.io/deis/duffle:latest
 
 ifeq ($(OS),Windows_NT)
 	SHELL  = cmd.exe
 	CHECK  = where.exe
 else
-	SHELL  = bash
+	SHELL  ?= bash
 	CHECK  = command -v
 endif
 
