@@ -3,13 +3,12 @@ const { events, Job, Group } = require("brigadier")
 const projectName = "bundles"
 
 function test(e, project) {
-  var test = new Job(`${projectName}-test`, "docker");
+  var test = new Job(`${projectName}-test`, "brigade.azurecr.io/deis/duffle:latest");
 
   test.tasks = [
     "apk add --update --no-cache make",
-    `docker login ${project.secrets.acrRegistryHost} -u ${project.secrets.acrRegistryUser} -p ${project.secrets.acrRegistryToken}`,
     "cd /src",
-    "SHELL=/bin/sh make test-functional-all"
+    "SHELL=/bin/sh make test-functional-local"
   ];
 
   return test
