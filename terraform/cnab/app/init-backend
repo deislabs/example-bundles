@@ -17,3 +17,12 @@ connection_string="$(az storage account show-connection-string -n "${TF_VAR_back
 if ! az storage container show -n "${TF_VAR_backend_storage_container}" --connection-string "${connection_string}" &> /dev/null; then
   az storage container create -n "${TF_VAR_backend_storage_container}" --connection-string "${connection_string}"
 fi
+
+# Terraform requires a backend configuration in order to use partial configurations with terraform init
+
+cat << EOF > /cnab/app/tf/backend.tf
+terraform {
+  backend "azurerm" {
+  }
+}
+EOF
