@@ -7,7 +7,28 @@
         "image": "cnab/example-voting-app-sqlserver:latest"
         }
     ],
-    "images": [],
+    "images": [
+        {
+            "name": "Cache",
+            "image": "redis:alpine",
+            "uri": "redis:alpine",
+            "imageType": "docker",
+            "ref": {
+                "path": "./docker-compose.yaml",
+                "field": "services.redis.image"
+            }
+        },
+        {
+            "name": "Database",
+            "image": "microsoft/mssql-server-linux:latest",
+            "uri": "microsoft/mssql-server-linux:latest",
+            "imageType": "docker",
+            "ref": {
+                "path": "./docker-compose.yaml",
+                "field": "services.db.image"
+            }
+        }
+    ],
     "parameters": {},
     "credentials": {}
 }
