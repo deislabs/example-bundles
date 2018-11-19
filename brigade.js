@@ -4,6 +4,7 @@ const projectName = "bundles"
 
 function test(e, project) {
   var test = new Job(`${projectName}-test`, "brigade.azurecr.io/deis/duffle:latest");
+  test.imagePullSecrets = ["brigade-acr-pull-secret"]
 
   test.tasks = [
     "apk add --update --no-cache make",
