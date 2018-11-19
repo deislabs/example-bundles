@@ -9,8 +9,9 @@
     ],
     "images": [
         {
-            "name": "alpine",
-            "uri": "technosophos/demo2alpine:0.1.0",
+            "description": "alpine",
+            "image": "technosophos/demo2alpine:0.1.0",
+            "imageType": "docker",
             "refs": [
                 {
                     "path": "cnab/app/charts/alpine/values.yaml",
