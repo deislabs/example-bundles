@@ -32,7 +32,7 @@ function runTests(e, p) {
   note.text = "Ensuring all tests all pass."
 
   // Send notification, then run, then send pass/fail notification
-  return notificationWrap(test, note)
+  return notificationWrap(test(e, p), note)
 }
 
 // A GitHub Check Suite notification
