@@ -6,7 +6,8 @@ BASE_DIR        := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 GIT_TAG         := $(shell git describe --tags --always)
 VERSION         ?= ${GIT_TAG}
-IMAGE_TAG       ?= $(VERSION)
+# Replace + with -, for Docker image tag compliance
+IMAGE_TAG       ?= $(subst +,-,$(VERSION))
 BUNDLE          ?=
 DUFFLE_IMG      ?= brigade.azurecr.io/deis/duffle:latest
 
@@ -46,11 +47,15 @@ docker-push: check-bundle
 
 .PHONY: test-functional
 test-functional:
-	docker run --rm -v ${BASE_DIR}:/src -w /src $(DUFFLE_IMG) ./scripts/test-functional.sh $(BUNDLE)
+	docker run --rm \
+		-v ${BASE_DIR}:/src \
+		-w /src \
+		-e BUNDLE=$(BUNDLE) \
+		$(DUFFLE_IMG) ./scripts/test-functional.sh
 
 .PHONY: test-functional-local
 test-functional-local:
-	./scripts/test-functional.sh $(BUNDLE)
+	./scripts/test-functional.sh
 
 define all
 	@for dir in $$(ls -1); do \
