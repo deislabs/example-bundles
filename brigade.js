@@ -30,7 +30,7 @@ function runTests(e, p) {
   note.conclusion = "";
   note.title = "Run Tests";
   note.summary = "Running the test targets for " + e.revision.commit;
-  note.text = "Ensuring all tests all pass."
+  note.text = "Ensuring all tests pass."
 
   // Send notification, then run, then send pass/fail notification
   return notificationWrap(test(e, p), note)
