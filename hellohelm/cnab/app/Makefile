@@ -14,7 +14,7 @@ install:
 
 uninstall: 
 	@echo "Do Uninstall"
-	helm delete --purge --namespace $(CNAB_P_NAMESPACE) $(CNAB_INSTALLATION_NAME)
+	helm delete --purge $(CNAB_INSTALLATION_NAME)
 
 upgrade:
 	@echo "Do Upgrade"
@@ -22,6 +22,6 @@ upgrade:
 
 status:
 	@echo "Do Status"
-	helm status --namespace $(CNAB_P_NAMESPACE) $(CNAB_INSTALLATION_NAME)
+	helm status $(CNAB_INSTALLATION_NAME)
 
 .PHONY: install uninstall upgrade status
