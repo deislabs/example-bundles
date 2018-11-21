@@ -128,7 +128,7 @@ $ duffle install -c example-helm-creds -f hellohelm/bundle.json my-helm-test
 
 ## Developers
 
-Most bundles in this repository have a `Makefile` with two targets: `make docker-build` and `make docker-push`. These streamline the process of building and pushing Docker images.
+To invoke common commands on bundles in this repo, such as `make sign`, `make docker-build` and `make docker-push`, one can run `BUNDLE=<bundle name> make <target>` (or simply `make <target>` to run against all bundles.)  See [DEVELOPERS.md](DEVELOPERS.md) for more details.
 
 You can see three different "flavors" of CNAB bundle here.
 
