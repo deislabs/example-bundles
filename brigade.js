@@ -2,14 +2,26 @@ const { events, Job, Group } = require("brigadier")
 
 const projectName = "bundles"
 
+// minimal shell env for images w/o git, bash, etc.
+const shellEnv = {
+  GIT: ":",
+  CHECK: "which"
+}
+
 function test(e, project) {
   var test = new Job(`${projectName}-test`, "brigade.azurecr.io/deis/duffle:latest");
+  test.imageForcePull = true;
   test.imagePullSecrets = ["brigade-acr-pull-secret"]
+  test.env = shellEnv
 
+  duffleInit = `duffle init -u 'ci@${projectName}.com'`
   test.tasks = [
-    "apk add --update --no-cache make",
     "cd /src",
-    "SHELL=/bin/sh make test-functional-local"
+    // ensure functional tests running in (default) secure mode pass
+    `${duffleInit} && make test-functional`,
+    // ensure functional tests running in insecure mode pass
+    "rm -rf ~/.duffle",
+    `${duffleInit} && INSECURE=true make test-functional`
   ];
 
   return test
@@ -103,17 +115,18 @@ async function notificationWrap(job, note, conclusion) {
   }
 }
 
-function dockerPublish(project, gitTag, imageTag) {
+function dockerPublish(project, imageTag) {
   const publisher = new Job(`${projectName}-docker-publish`, "docker");
   let dockerRegistry = project.secrets.dockerhubRegistry || "docker.io";
   let dockerOrg = project.secrets.dockerhubOrg || "cnab";
 
+  publisher.env = shellEnv
   publisher.docker.enabled = true;
   publisher.tasks = [
     "apk add --update --no-cache make",
-    `cd /src && git checkout ${gitTag}`,
+    `cd /src`,
     `docker login ${dockerRegistry} -u ${project.secrets.dockerhubUsername} -p ${project.secrets.dockerhubPassword}`,
-    `DOCKER_REGISTRY=${dockerOrg} VERSION=${imageTag} make docker-build-all docker-push-all`,
+    `DOCKER_REGISTRY=${dockerOrg} VERSION=${imageTag} make docker-build docker-push`,
   ];
 
   return publisher;
@@ -146,7 +159,7 @@ events.on("push", (e, p) => {
   }
 
   if (release) {
-    dockerPublish(p, gitTag, imageTag).run()
+    dockerPublish(p, imageTag).run()
   }
 })
 
@@ -159,5 +172,5 @@ events.on("release", (e, p) => {
     throw error("No tag specified")
   }
 
-  dockerPublish(project, payload.tag, payload.tag).run()
+  dockerPublish(project, payload.tag).run()
 })
