@@ -15,7 +15,6 @@ endif
 
 GIT_TAG  := $(shell git describe --tags --always)
 VERSION  := ${GIT_TAG}
-#LDFLAGS  += -X github.com/deis/duffle/pkg/version.Version=$(VERSION)
 
 .PHONY: build
 build:
