@@ -8,7 +8,7 @@
         "digest": "sha256:8247a5a069423144cf8569ac511ca460a05b3bf4e1d2f39e010e494061764f34"
       }
     ],
-    "images": null,
+    "images": [],
     "parameters": {
       "resource_group": {
         "defaultValue": "duffle-group",

@@ -5,32 +5,65 @@ const projectName = "bundles"
 // minimal shell env for images w/o git, bash, etc.
 const shellEnv = {
   GIT: ":",
-  CHECK: "which"
+  CHECK: "which",
+  // this avoids verbose logging when invoking targets that utilize sub-makes
+  MAKE: "make --no-print-directory"
 }
 
-function test(e, project) {
-  var test = new Job(`${projectName}-test`, "brigade.azurecr.io/deis/duffle:latest");
+function testFunctional(e, project) {
+  var test = new Job(`${projectName}-test`, "brigade.azurecr.io/deislabs/duffle:latest");
   test.imageForcePull = true;
   test.imagePullSecrets = ["brigade-acr-pull-secret"]
   test.env = shellEnv
 
-  duffleInit = `duffle init -u 'ci@${projectName}.com'`
   test.tasks = [
     "cd /src",
     // ensure functional tests running in (default) secure mode pass
-    `${duffleInit} && make test-functional`,
+    "${MAKE} test-functional",
     // ensure functional tests running in insecure mode pass
     "rm -rf ~/.duffle",
-    `${duffleInit} && INSECURE=true make test-functional`
+    "INSECURE=true ${MAKE} test-functional"
   ];
 
   return test
 }
 
+function validate(e, project) {
+  var validator = new Job(`${projectName}-validate`, "node:8-alpine");
+
+  validator.env = shellEnv
+  // TODO: remove once no longer needed
+  // (currently used to pull json schema from private cnab-spec repo)
+  validator.env.GITHUB_AUTH_TOKEN = project.secrets.ghToken
+
+  validator.tasks = [
+    "apk add --update make",
+    "cd /src",
+    // ensure all bundle.json files adhere to json schema
+    "${MAKE} build-validator-local validate-local",
+  ];
+
+  return validator
+}
+
 // Here we can add additional Check Runs, which will run in parallel and
 // report their results independently to GitHub
 function runSuite(e, p) {
+  runValidation(e, p).catch(e => {console.error(e.toString())});
   runTests(e, p).catch(e => {console.error(e.toString())});
+}
+
+// runValidation is a Check Run that is ran as part of a Checks Suite
+function runValidation(e, p) {
+  // Create Notification object (which is just a Job to update GH using the Checks API)
+  var note = new Notification(`validation`, e, p);
+  note.conclusion = "";
+  note.title = "Run Validation";
+  note.summary = "Running the schema validation for " + e.revision.commit;
+  note.text = "Ensuring all bundle.json files adhere to json schema spec"
+
+  // Send notification, then run, then send pass/fail notification
+  return notificationWrap(validate(e, p), note)
 }
 
 // runTests is a Check Run that is ran as part of a Checks Suite
@@ -45,7 +78,7 @@ function runTests(e, p) {
   note.text = "Ensuring all tests pass."
 
   // Send notification, then run, then send pass/fail notification
-  return notificationWrap(test(e, p), note)
+  return notificationWrap(testFunctional(e, p), note)
 }
 
 // A GitHub Check Suite notification
@@ -133,7 +166,10 @@ function dockerPublish(project, imageTag) {
 }
 
 events.on("exec", (e, p) => {
-  test(e, p).run()
+  Group.runEach([
+    validate(e, p),
+    testFunctional(e, p)
+  ])
 })
 
 events.on("check_suite:requested", runSuite)

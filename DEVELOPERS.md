@@ -36,6 +36,34 @@ make sign
 
 Note: the `sign-local` variant will output the signed bundle into each bundle's directory in the form of `bundle.cnab`.
 
+### Validate Bundle(s)
+
+These targets can be used to validate that a bundle's `bundle.json` adheres to the official json schema spec.
+
+#### Docker-based
+
+```shell
+make build-validator
+
+# validates the provided bundle
+BUNDLE=<bundle> make validate
+
+# validates all bundles
+make validate
+```
+
+#### Local
+
+```shell
+make build-validator-local
+
+# validates the provided bundle
+BUNDLE=<bundle> make validate-local
+
+# validates all bundles
+make validate-local
+```
+
 ### Docker Run
 
 This command is only valid for a provided `BUNDLE`.
