@@ -6,11 +6,18 @@ function test_functional() {
   bundle="${1}"
   bundle_file="${bundle}/bundle.cnab"
   insecure=""
+  params=""
 
   if [[ -n "${INSECURE}" ]]; then
     echo "Duffle is running in insecure mode..."
     bundle_file="${bundle}/bundle.json"
     insecure="--insecure"
+  fi
+
+  # get required params and supply default values
+  if ! params=$(get_required_params ${bundle}); then
+    echo "Unable to get required params: ${params}"
+    return 1
   fi
 
   # run tests
@@ -21,7 +28,7 @@ function test_functional() {
     -d debug \
     -f "${bundle_file}" \
     -c "${bundle}-test-creds" \
-    "${bundle}-test" $(get_required_params ${bundle}) ${insecure}
+    "${bundle}-test" ${params} ${insecure}
 }
 
 function get_required_params() {
