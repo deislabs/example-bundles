@@ -4,20 +4,55 @@ set -eo pipefail
 
 function test_functional() {
   bundle="${1}"
-  bundleFile="${bundle}/bundle.cnab"
+  bundle_file="${bundle}/bundle.cnab"
   insecure=""
 
   if [[ -n "${INSECURE}" ]]; then
     echo "Duffle is running in insecure mode..."
-    bundleFile="${bundle}/bundle.json"
+    bundle_file="${bundle}/bundle.json"
     insecure="--insecure"
   fi
 
   # run tests
   echo "Generating creds for the ${bundle} bundle..."
-  duffle creds generate "${bundle}-test-creds" -f "${bundleFile}" -q ${insecure}
+  duffle creds generate "${bundle}-test-creds" -f "${bundle_file}" -q ${insecure}
   echo "Installing the ${bundle} bundle..."
-  duffle install -d debug "${bundle}-test" -f "${bundleFile}" -c "${bundle}-test-creds" ${insecure}
+  duffle install \
+    -d debug \
+    -f "${bundle_file}" \
+    -c "${bundle}-test-creds" \
+    "${bundle}-test" $(get_required_params ${bundle}) ${insecure}
+}
+
+function get_required_params() {
+  bundle="${1}"
+  required_params=""
+
+  param_and_types=$(cat "${bundle}/bundle.json" \
+    | jq -r '.parameters | to_entries[] | select(.value.required==true) | "\(.key)=\(.value.type)"')
+
+  for param_and_type in ${param_and_types}; do
+    param="${param_and_type%=*}"
+    type="${param_and_type#*=}"
+
+    case $type in
+    string)
+      required_params="${required_params} --set ${param}=BOGUS"
+      ;;
+    int)
+      required_params="${required_params} --set ${param}=0"
+      ;;
+    bool)
+      required_params="${required_params} --set ${param}=true"
+      ;;
+    *)
+      echo "type ${type} not supported"
+      return 1
+      ;;
+    esac
+  done
+
+  echo "${required_params}"
 }
 
 function main() {
