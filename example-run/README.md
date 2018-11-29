@@ -2,10 +2,12 @@
 
 This bundle exhibits how to create custom run targets
 
-To build this demo:
+To build this demo, run the following commands from the root of the `bundles` repo:
 
 ```
-$ make build
+$ export BUNDLE=example-run
+$ make docker-build
+$ make sign-local
 ```
 
 ## Using This Bundle
@@ -43,10 +45,10 @@ This bundle shows how to use Duffle's experimental support for custom actions:
 }
 ```
 
-To execute this bundle:
+To execute this bundle, run the following from this `example-run` directory:
 
 ```console
-$ duffle install -f bundle.cnab example-run
+$ duffle install -f ./bundle.cnab example-run
 $ duffle run greet example-run --set greeting=HELLO
 $ duffle run migrate example-run --set greeting=HELLO
 $ duffle claim list --long
