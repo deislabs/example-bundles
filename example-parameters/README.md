@@ -2,13 +2,17 @@
 
 This bundle exhibits how to use parameters to inject environment variables into the invocation image.
 
-To build this demo:
+To build this demo, run the following from the root of the `bundles` repo:
 
 ```
-$ make build
+$ export BUNDLE=example-parameters
+$ make sign-local
+$ make docker-build
 ```
 
 ## Using This Bundle
+
+Now, change directories into this `example-parameters` sub-directory.
 
 The relevant portion of the `bundle.json` looks like this:
 
@@ -50,7 +54,7 @@ This declares three parameters: `port`, `greeting`, and `config`. The first is i
 To inject values into these parameters, experiment with the `--set` and `--set-file` flags on Duffle:
 
 ```console
-$ duffle install example -f bundle.cnab --set-file config=./README.md --set greeting="HELLO" --set port=1234
+$ duffle install example -f ./bundle.cnab --set-file config=./README.md --set greeting="HELLO" --set port=1234
 ```
 
 When a parameter is not specified, it's `defaultValue` is used.
