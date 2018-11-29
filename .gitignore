@@ -1,2 +1,3 @@
 armbase/bin
 vendor
+*.cnab
