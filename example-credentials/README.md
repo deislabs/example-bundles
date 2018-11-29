@@ -2,14 +2,17 @@
 
 This bundle exhibits how to use credentials to pass confidential information into a bundle.
 
-To build this demo:
+To build this demo, run the following commands from the root of the `bundles` repo:
 
 ```
-$ duffle key sign bundle.json
+$ export BUNDLE=example-credentials
+$ make sign-local
 $ make docker-build
 ```
 
 ## Using This Bundle
+
+Now change directories into this particular `example-credentials` sub-directory.
 
 *Do not send real credentials into this bundle!* It simply echos them back to the console over the Docker socket.
 
