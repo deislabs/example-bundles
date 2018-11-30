@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "SECRET_ONE: $SECRET_ONE"
+echo "/var/secret_two/data.txt"
+cat /var/secret_two/data.txt
+echo ""
+echo "SECRET_THREE: $SECRET_THREE"
+echo "/var/secret_three/data.txt"
+cat /var/secret_three/data.txt
+echo ""
