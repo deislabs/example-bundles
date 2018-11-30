@@ -1,0 +1,28 @@
+{
+    "name": "example-run",
+    "version": "0.0.1",
+    "invocationImages": [
+        {
+        "imageType": "docker",
+        "image": "cnab/example-run:0.1.0"
+      }
+    ],
+    "images": [],
+    "parameters": {
+        "greeting": {
+            "defaultValue": "hello",
+            "type": "string",
+            "metadata":{
+                "description": "this will be in $GREETING"
+            }
+        }
+    },
+    "actions": {
+        "greet": {
+            "modifies": false
+        },
+        "migrate": {
+            "modifies": true
+        }
+    }
+}
