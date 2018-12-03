@@ -4,7 +4,7 @@
     "invocationImages": [
         {
         "imageType": "docker",
-        "image": "cnab/helloworld:0.1.1"
+        "image": "cnab/helloworld:latest"
       }
     ],
     "images": [],

@@ -4,7 +4,7 @@
     "invocationImages": [
         {
         "imageType": "docker",
-        "image": "cnab/example-credentials:0.1.0"
+        "image": "cnab/example-credentials:latest"
       }
     ],
     "images": [],
