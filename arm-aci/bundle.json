@@ -4,7 +4,7 @@
     "invocationImages": [
         {
             "imageType": "docker",
-            "image": "technosophos/arm-aci:latest"
+            "image": "cnab/arm-aci:latest"
         }
     ],
     "images": [
