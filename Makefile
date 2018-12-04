@@ -102,14 +102,9 @@ JSON_SCHEMA_FILE := /tmp/bundle.schema.json
 VALIDATOR_IMG    := $(ORG)/$(PROJECT)-ajv
 VALIDATOR_CMD    := ajv test -s $(JSON_SCHEMA_FILE) -d $(BUNDLE)/bundle.json --valid
 
-# TODO: remove need to pass/use GITHUB_AUTH_TOKEN once cnab-spec repo public
 .PHONY: build-validator
 build-validator:
-ifndef GITHUB_AUTH_TOKEN
-	$(error GITHUB_AUTH_TOKEN currently needed to fetch json schema)
-endif
 	@docker build -f Dockerfile.ajv \
-		--build-arg github_auth_token=${GITHUB_AUTH_TOKEN} \
 		--build-arg json_schema_uri=$(JSON_SCHEMA_URI) \
 		--build-arg json_schema_file=$(JSON_SCHEMA_FILE) \
 		-t $(VALIDATOR_IMG) .
@@ -130,17 +125,12 @@ endif
 build-validator-local:
 	@npm install -g ajv-cli
 	@wget -q \
-		--header="Authorization: token ${GITHUB_AUTH_TOKEN}" \
 		--header 'Accept: application/vnd.github.v3.raw' \
 		-O $(JSON_SCHEMA_FILE) \
 		$(JSON_SCHEMA_URI)
 
-# TODO: remove need to pass/use GITHUB_AUTH_TOKEN once cnab-spec repo public
 .PHONY: validate-local
 validate-local:
-ifndef GITHUB_AUTH_TOKEN
-	$(error GITHUB_AUTH_TOKEN currently needed to fetch json schema)
-endif
 ifndef BUNDLE
 	$(call bundle-all,validate-local)
 else
