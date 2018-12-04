@@ -5,9 +5,7 @@ This bundle exhibits how to use credentials to pass confidential information int
 To build this demo, run the following commands from the root of the `bundles` repo:
 
 ```
-$ export BUNDLE=example-credentials
-$ make sign-local
-$ make docker-build
+$ BUNDLE=example-credentials make build
 ```
 
 ## Using This Bundle

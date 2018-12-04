@@ -5,9 +5,7 @@ This bundle contains a docker compose-based voting app.
 To build this demo, run the following commands from the root of the `bundles` repo:
 
 ```
-$ export BUNDLE=example-voting-app-sqlserver
-$ make docker-build
-$ make sign-local
+$ BUNDLE=example-voting-app-sqlserver make build
 ```
 
 ## Using This Bundle
