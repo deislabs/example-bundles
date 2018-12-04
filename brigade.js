@@ -208,5 +208,5 @@ events.on("release", (e, p) => {
     throw error("No tag specified")
   }
 
-  dockerPublish(project, payload.tag).run()
+  dockerPublish(p, payload.tag).run()
 })
