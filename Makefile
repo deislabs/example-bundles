@@ -10,7 +10,7 @@ VERSION         ?= ${GIT_TAG}
 # Replace + with -, for Docker image tag compliance
 IMAGE_TAG       ?= $(subst +,-,$(VERSION))
 BUNDLE          ?=
-DUFFLE_IMG      ?= brigade.azurecr.io/deislabs/duffle:latest
+DUFFLE_IMG      ?= deislabs/duffle:latest
 
 ifeq ($(OS),Windows_NT)
 	SHELL  = cmd.exe

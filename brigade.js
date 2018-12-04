@@ -11,9 +11,8 @@ const shellEnv = {
 }
 
 function testFunctional(e, project) {
-  var test = new Job(`${projectName}-test`, "brigade.azurecr.io/deislabs/duffle:latest");
+  var test = new Job(`${projectName}-test`, "deislabs/duffle:latest");
   test.imageForcePull = true;
-  test.imagePullSecrets = ["brigade-acr-pull-secret"]
   test.env = shellEnv
 
   test.tasks = [
