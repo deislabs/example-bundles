@@ -7,31 +7,71 @@ placeholder data.
 
 Clone this repository to work with these bundles.
 
-## Recommendations
+## Prerequisites
 
-We recommend running these samples by passing the bundle path directly to `duffle`:
+ * The [duffle](https://github.com/deislabs/duffle) binary will be needed to work with these bundles.
+It can be built and installed locally via instructions in the [duffle](https://github.com/deislabs/duffle) repo,
+or the latest release can be fetched from the [duffle releases](https://github.com/deislabs/duffle/releases) page.
+
+ * Docker
+
+ * make
+
+## Quick Start
+
+Here we ensure a bundle is built (and signed) and then install the bundle via `duffle`:
 
 ```console
-$ duffle install -f helloworld/bundle.json helloworld
+$ BUNDLE=helloworld VERSION=latest make build
+
+$ duffle install my-helloworld helloworld
+Executing install action...
+Port parameter was set to 8080
+Install action
+Action install complete for my-helloworld
 ```
 
-Most demos also require credentials (`duffle install -c CREDS -f BUNDLE NAME`). See the credential set documentation below to see how to create these.
+We can then check the status of an installed bundle and then, optionally, uninstall the bundle:
+
+```console
+$ duffle status my-helloworld
+Installation Name:    	my-helloworld
+...
+Bundle:               	helloworld
+Last Action Performed:	install
+Last Action Status:   	success
+Last Action Message:
+Executing status action in bundle...
+Port parameter was set to 8080
+Status action
+Action status complete for my-helloworld
+
+$ duffle uninstall my-helloworld
+Executing uninstall action...
+Port parameter was set to 8080
+uninstall action
+Action uninstall complete for my-helloworld
+```
+
+## Recommendations
+
+Most demos also require credentials (`duffle install -c CREDS BUNDLE_NAME`). See the credential set documentation below to see how to create these.
 
 We recommend starting with the following bundles:
 
-- For Helm/Kubernetes: `duffle install -f hellohelm/bundle.json ...`
+- For Helm/Kubernetes: `duffle install my-hellohelm hellohelm...`
     - Requires a k8s cluster and credentials to that cluster
     - Creates an Alpine linux chart (pod)
-- For Terraform: `duffle install -f terraform/bundle.json ...` (The aks-terraform bundle takes a long time and requires some extra tuning)
+- For Terraform: `duffle install my-terraform terraform ...` (The aks-terraform bundle takes a long time and requires some extra tuning)
     - Requires an Azure account
     - Creates a VM plus network resources and a storage account
-- For ARM: `duffle install -f arm-aci/bundle.json ...`
+- For ARM: `duffle install my-arm-aci arm-aci ...`
     - Requires an Azure account
     - Creates an container running in ACI
-- For Ansible: `duffle install -f ansible-azurevm/bundle.json ...` (`ansiblebase` is faster, but just installs a resource group)
+- For Ansible: `duffle install my-ansible-azurevm ansible-azurefm ...` (`ansiblebase` is faster, but just installs a resource group)
     - Requires an Azure account
     - Creates a VM plus network
-- For ~pure awesomeness~ Kubernetes + Azure: `duffle install -f aks/bundle.json ...`
+- For ~pure awesomeness~ Kubernetes + Azure: `duffle install my-aks aks ...`
     - Requires an Azure account
     - Requires a DNS name that can be used to assign an IP
     - Creates an AKS Kubernetes cluster
@@ -99,7 +139,7 @@ $ duffle creds generate -f path/to/bundle.json $NAME
 Where `$NAME` is the name you want to give to these credentials. For example:
 
 ```console
-$ duffle creds generate -f hellohelm/bundle.json example-helm-creds
+$ duffle creds generate example-helm-creds hello-helm
 name: example-helm-creds
 credentials:
 - name: kubeconfig
@@ -123,7 +163,7 @@ Once you have generated credential sets, you can list them like this: `duffle cr
 To use a credential set, supply it with the `-c` flag: 
 
 ```console
-$ duffle install -c example-helm-creds -f hellohelm/bundle.json my-helm-test
+$ duffle install -c example-helm-creds my-helm-test hellohelm
 ```
 
 ## Developers
