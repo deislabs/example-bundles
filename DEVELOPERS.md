@@ -2,6 +2,16 @@
 
 ## Bundle Development
 
+### Build
+
+```shell
+# builds the invocation image and signs the provided bundle
+BUNDLE=<bundle> make build
+
+# builds invocation images and signs all bundles
+make build
+```
+
 ### Docker Build
 
 ```shell

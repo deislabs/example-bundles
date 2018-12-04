@@ -5,9 +5,7 @@ This bundle exhibits how to create custom run targets
 To build this demo, run the following commands from the root of the `bundles` repo:
 
 ```
-$ export BUNDLE=example-run
-$ make docker-build
-$ make sign-local
+$ BUNDLE=example-run make build
 ```
 
 ## Using This Bundle
