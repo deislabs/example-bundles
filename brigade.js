@@ -31,9 +31,6 @@ function validate(e, project) {
   var validator = new Job(`${projectName}-validate`, "node:8-alpine");
 
   validator.env = shellEnv
-  // TODO: remove once no longer needed
-  // (currently used to pull json schema from private cnab-spec repo)
-  validator.env.GITHUB_AUTH_TOKEN = project.secrets.ghToken
 
   validator.tasks = [
     "apk add --update make",
