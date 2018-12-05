@@ -49,5 +49,5 @@ To execute this bundle, run the following from this `example-run` directory:
 $ duffle install -f ./bundle.cnab example-run
 $ duffle run greet example-run --set greeting=HELLO
 $ duffle run migrate example-run --set greeting=HELLO
-$ duffle claim list --long
+$ duffle claim list
 ```
