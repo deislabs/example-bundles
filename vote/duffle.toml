@@ -1,0 +1,4 @@
+name = "vote"
+registry = "cnab"
+components = ["cnab"]
+version = "0.1.0"

@@ -25,7 +25,7 @@ upgrade:
 status:
 	@echo "Do Status"
 	@for chart in $$(ls charts); do [[ ! -d charts/$$chart ]] || \
-		helm status $(CNAB_P_HELM_OPTIONS) $(CNAB_INSTALLATION_NAME)-$$chart ;\
+		helm status $(CNAB_INSTALLATION_NAME)-$$chart ;\
 	done
 
 .PHONY: install uninstall upgrade status
