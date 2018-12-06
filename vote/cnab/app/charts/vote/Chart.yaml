@@ -1,0 +1,6 @@
+name: vote
+description: A simple distributed application running across multiple Docker containers
+version: 0.1.0
+sources:
+  - https://github.com/dockersamples/example-voting-app
+appVersion: 1.0
