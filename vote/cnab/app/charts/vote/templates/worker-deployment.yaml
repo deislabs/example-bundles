@@ -3,6 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: worker
+  namespace: {{ .Release.Namespace }}
   labels:
     # The "heritage" label is used to track which tool deployed a given chart.
     # It is useful for admins who want to see what releases a particular tool
