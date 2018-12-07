@@ -18,6 +18,38 @@
             }
         }
     ],
+    "images": [
+        {
+            "imageType": "docker",
+            "image": "openfaas/gateway:0.9.7",
+            "digest": "sha256:85252170219323d9a9bffd42d9083757e0a1d282b2578c3a0f982902188f01f9"
+        },
+        {
+            "imageType": "docker",
+            "image": "openfaas/faas-swarm:0.4.4",
+            "digest": "sha256:b094d0a023159409799281e00f23680b84c6c6bf656df1c73e073c86b2e6957d"
+        },
+        {
+            "imageType": "docker",
+            "image": "nats-streaming:0.11.2",
+            "digest": "sha256:399248d7f6362bc0e483563f1493bdccd3608ee4b88c79052d4544f6042ffcfd"
+        },
+        {
+            "imageType": "docker",
+            "image": "openfaas/queue-worker:0.5.4",
+            "digest": "sha256:937cf6e928424b2711568623b527ce7cd75ab8d9e0ae871165e705d8036a2e11"
+        },
+        {
+            "imageType": "docker",
+            "image": "prom/prometheus:v2.3.1",
+            "digest": "sha256:97103614790d85084a6dfb4d4d1cc9a7068712d156e53db59ba43f3138d4fa92"
+        },
+        {
+            "imageType": "docker",
+            "image": "prom/alertmanager:v0.15.0",
+            "digest": "sha256:ee821ffdaaf9f163dbcbd70eb1f2554e0c281cf98a0aefbeee9aeeb33565647d"
+        }
+    ],
     "maintainers": [
         {
             "name": "John McCabe",
