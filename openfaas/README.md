@@ -1,4 +1,4 @@
-# OpenFaaS CNAB Duffle Packaging
+# OpenFaaS on Swarm
 
 This bundle packages up [OpenFaaS](https://github.com/openfaas/faas) for Docker Swarm.
 
