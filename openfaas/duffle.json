@@ -1,0 +1,42 @@
+{
+    "name": "johnmccabe/openfaas",
+    "version": "0.9.7",
+    "description": "OpenFaaS: Serverless Functions made Simple",
+    "keywords": [
+        "openfaas",
+        "faas",
+        "serverless"
+    ],
+    "invocationImages": [
+        {
+            "cnab": {
+                "name": "cnab",
+                "builder": "docker",
+                "configuration": {
+                    "registry": "cnab"
+                }
+            }
+        }
+    ],
+    "maintainers": [
+        {
+            "name": "John McCabe",
+            "email": "john@johnmccabe.net",
+            "url": "https://github.com/johnmccabe"
+        }
+    ],
+    "parameters": {
+        "basic_auth": {
+            "type": "string",
+            "defaultValue": "true"
+        }
+    },
+    "credentials": {
+        "basic-auth-user": {
+            "path": "/basic-auth-user.txt"
+        },
+        "basic-auth-password": {
+            "path": "/basic-auth-password.txt"
+        }
+    }
+}
