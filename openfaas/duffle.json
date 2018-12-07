@@ -1,6 +1,6 @@
 {
     "name": "johnmccabe/openfaas",
-    "version": "0.9.7",
+    "version": "0.9.11",
     "description": "OpenFaaS: Serverless Functions made Simple",
     "keywords": [
         "openfaas",
@@ -22,33 +22,33 @@
     "images": [
         {
             "imageType": "docker",
-            "image": "openfaas/gateway:0.9.7",
-            "digest": "sha256:85252170219323d9a9bffd42d9083757e0a1d282b2578c3a0f982902188f01f9"
+            "image": "openfaas/gateway:0.9.11",
+            "digest": "sha256:64e7700911d16a58194e6a419b93c6b1afd819c35f3b06fdaf3a1119f9ad1784"
         },
         {
             "imageType": "docker",
-            "image": "openfaas/faas-swarm:0.4.4",
-            "digest": "sha256:b094d0a023159409799281e00f23680b84c6c6bf656df1c73e073c86b2e6957d"
+            "image": "openfaas/faas-swarm:0.5.0",
+            "digest": "sha256:2e5e560d77833cc25c18c18f44b73647ded5a5b4e4a0a5907bb8b1caad570c4e"
         },
         {
             "imageType": "docker",
             "image": "nats-streaming:0.11.2",
-            "digest": "sha256:399248d7f6362bc0e483563f1493bdccd3608ee4b88c79052d4544f6042ffcfd"
+            "digest": "sha256:d70706ce2e92efa6daa193731cd3aec98aedf3c15c51c2cf5b7a6bbc80a43044"
         },
         {
             "imageType": "docker",
             "image": "openfaas/queue-worker:0.5.4",
-            "digest": "sha256:937cf6e928424b2711568623b527ce7cd75ab8d9e0ae871165e705d8036a2e11"
+            "digest": "sha256:05b2de85c30e638a36204614f43dece64897db6d983f8191ebd5e98c3ff8edb5"
         },
         {
             "imageType": "docker",
             "image": "prom/prometheus:v2.3.1",
-            "digest": "sha256:97103614790d85084a6dfb4d4d1cc9a7068712d156e53db59ba43f3138d4fa92"
+            "digest": "sha256:0283ae2509e1ccc71830edf382713cc3906aa55ca9418c50911854223829bf0b"
         },
         {
             "imageType": "docker",
             "image": "prom/alertmanager:v0.15.0",
-            "digest": "sha256:ee821ffdaaf9f163dbcbd70eb1f2554e0c281cf98a0aefbeee9aeeb33565647d"
+            "digest": "sha256:55c0d339205048ba46522ac3495bfcf9848669d39ea71b950bf6da86fc2d4f1b"
         }
     ],
     "maintainers": [

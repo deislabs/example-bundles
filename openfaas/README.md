@@ -31,11 +31,11 @@ It demonstrates the following [CNAB Bundle](https://github.com/deislabs/cnab-spe
 
 - Create Basic Auth credentials used to secure the API/UI (note that other mechanisms for securing OpenFaaS exist, I'm just including the basic option at the moment).
 
-      duffle creds generate dev-creds johnmccabe/openfaas:0.9.7
+      duffle creds generate dev-creds johnmccabe/openfaas:0.9.11
 
 - Install OpenFaaS (you can optionally disable auth by passing `--set basic_auth=false` to `duffle install`)
 
-      duffle install openfaas johnmccabe/openfaas:0.9.7 -c dev-creds
+      duffle install openfaas johnmccabe/openfaas:0.9.11 -c dev-creds
 
 - View the installed app and check the status of OpenFaaS
 
