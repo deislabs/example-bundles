@@ -6,20 +6,20 @@ CNAB_P_HELM_OPTIONS ?=
 install:
 	@echo "Do $(CNAB_ACTION) for $(CNAB_INSTALLATION_NAME)"
 	@for chart in $$(ls charts); do [[ ! -d charts/$$chart ]] || \
-		helm install $(CNAB_P_HELM_OPTIONS) -n $(CNAB_INSTALLATION_NAME)-$$chart charts/$$chart ;\
+		helm install $(CNAB_P_HELM_OPTIONS) -n $(CNAB_INSTALLATION_NAME)-$$chart ./charts/$$chart ;\
 	done
 	@echo All charts installed
 
 uninstall: 
 	@echo "Do Uninstall"
 	@for chart in $$(ls charts); do [[ ! -d charts/$$chart ]] || \
-		helm delete --purge $(CNAB_P_HELM_OPTIONS) $(CNAB_INSTALLATION_NAME)-$$chart ;\
+		helm delete --purge $(CNAB_INSTALLATION_NAME)-$$chart $(CNAB_P_HELM_OPTIONS) ;\
 	done
 
 upgrade:
 	@echo "Do Upgrade"
 	@for chart in $$(ls charts); do [[ ! -d charts/$$chart ]] || \
-		helm upgrade $(CNAB_P_HELM_OPTIONS) $(CNAB_INSTALLATION_NAME)-$$chart charts/$$chart ;\
+		helm upgrade $(CNAB_INSTALLATION_NAME)-$$chart charts/$$chart $(CNAB_P_HELM_OPTIONS) ;\
 	done
 
 status:
