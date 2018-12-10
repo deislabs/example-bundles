@@ -1,7 +1,7 @@
 CNAB_ACTION ?= status
 CNAB_INSTALLATION_NAME ?= vote
 
-CNAB_P_HELM_OPTIONS ?= --dry-run --debug
+CNAB_P_HELM_OPTIONS ?= 
 
 install:
 	@echo "Do $(CNAB_ACTION) for $(CNAB_INSTALLATION_NAME)"
