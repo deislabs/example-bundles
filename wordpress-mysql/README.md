@@ -16,11 +16,32 @@ $ duffle creds add wordpress-mysql/example-wordpress-mysql-credential-set.yaml
 $ duffle creds show example-wordpress-mysql-credential-set
 ```
 4. Use the `duffle install` command by passing in a name (`wordpress-mysql`), a bundle metadata file (`-f <bundle.json>`) and a credential set(`-c example-wordpress-mysql-credential-set`):
+
+> Note: the default credential set uses environment variables `MYSQL_USER` and `MYSQL_PASSWORD`. These should be set prior to running the install.
+
 ```console
+$ export MYSQL_USER=username
+$ export MYSQL_PASSWORD=SuperSecretPassword
+
 $ duffle install wordpress-mysql -f wordpress-mysql/cnab/bundle.json -c example-wordpress-mysql-credential-set
 ```
 
-_Note: You may just see `Executing install action...` and nothing happen for a while. Don't worry stuff is happening. You can tail your docker container logs to follow along using via docker logs -f <container_name> in another terminal. We're going to work on getting more feedback in the main terminal asap._
+> Note: you can override values such as the AKS cluster_name, by adding `--set cluster_name=your-aks-name` to the duffle install command.
+
+This can take a while to complete. Check for the Wordpress pod running in your cluster and view the logs. Wait for this pod to be running and ready.
+
+5. Login to Wordpress. Use the commands below to find your Wordpress URL and credentials and test: 
+
+```
+export SERVICE_IP=$(kubectl get svc --namespace default wordpress-mysql8-wordpress --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
+
+echo "WordPress URL: http://$SERVICE_IP/"
+echo "WordPress Admin URL: http://$SERVICE_IP/admin"
+
+echo Username: user
+echo Password: $(kubectl get secret --namespace default wordpress-mysql8-wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode)
+```
+
 
 ### Considerations for future iterations of this bundle
 - Connect to azure-cli with a service prinicpal

@@ -4,7 +4,7 @@
     "invocationImages": [
       {
         "imageType": "docker",
-        "image": "cnab/wordpress-mysql:latest"
+        "image": "chzbrgr71/wordpress-mysql:1.1"
       }
     ],
     "images": [],
@@ -23,6 +23,10 @@
       },
       "mysql_db_service_name": {
         "defaultValue": "mymysqldb",
+        "type": "string"
+      },
+      "mysql_location": {
+        "defaultValue": "westus",
         "type": "string"
       }
     },
