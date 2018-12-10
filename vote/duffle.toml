@@ -1,0 +1,12 @@
+name = "vote"
+version = "0.1.0"
+[invocationImages]
+  [invocationImages.cnab]
+    name = "cnab"
+    builder = "docker"
+    configuration = {registry = "cnab"}
+[credentials.kubeconfig]
+    path = "/root/.kube/config"
+      
+    
+  

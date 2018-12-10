@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: vote
+  namespace: {{ .Release.Namespace }}
+  labels:
+    # The "heritage" label is used to track which tool deployed a given chart.
+    # It is useful for admins who want to see what releases a particular tool
+    # is responsible for.
+    heritage: {{ .Release.Service }}
+    # The "release" convention makes it easy to tie a release to all of the
+    # Kubernetes resources that were created as part of that release.
+    release: {{ .Release.Name }}
+    # This makes it easy to audit chart usage.
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app: {{ template "vote.name" . }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vote
+    spec:
+      containers:
+      - image: dockersamples/examplevotingapp_vote:before
+        name: vote

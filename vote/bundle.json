@@ -1,0 +1,18 @@
+{
+    "name": "vote",
+    "version": "0.1.0",
+    "description": "A simple distributed application running across multiple Docker containers",
+    "invocationImages": [
+        {
+        "imageType": "docker",
+        "image": "cnab/vote:latest"
+        }
+    ],
+    "images": [],
+    "parameters": {},
+    "credentials": {
+        "kubeconfig": {
+            "path": "/root/.kube/config"
+        }
+    }
+}
