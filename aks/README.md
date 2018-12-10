@@ -1,7 +1,7 @@
 # AKS with Cert Management Bundle
 ### "Your personalized Kubernetes cluster"
 
-Create AKS cluster, configre helms with RBAC, install nginx-ingress-controller, installs kube-lego for certificate management, and modifies your domain to point to the newly provisioned nginx ingress controller service IP address.
+This bundle creates an AKS cluster, configures helm with RBAC, installs an nginx-ingress-controller, installs kube-lego for certificate management, and modifies your domain to point to the newly provisioned nginx ingress controller service IP address.
 
 ## Credentials
 By default, the `example-aks-credentials.yaml` file and the `run` script are configured to mount the necessary pieces to the authenticate to Azure. Another route to take is to configure a service principal. The necessary `az account login` line is included but commented out in the `run` script if you choose to use this in non-demo environment.
