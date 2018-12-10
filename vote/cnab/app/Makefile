@@ -13,7 +13,7 @@ install:
 uninstall: 
 	@echo "Do Uninstall"
 	@for chart in $$(ls charts); do [[ ! -d charts/$$chart ]] || \
-		helm delete $(CNAB_P_HELM_OPTIONS) $(CNAB_INSTALLATION_NAME)-$$chart ;\
+		helm delete --purge $(CNAB_P_HELM_OPTIONS) $(CNAB_INSTALLATION_NAME)-$$chart ;\
 	done
 
 upgrade:
