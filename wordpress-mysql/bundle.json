@@ -4,7 +4,8 @@
     "invocationImages": [
       {
         "imageType": "docker",
-        "image": "chzbrgr71/wordpress-mysql:1.1"
+        "image": "cnab/wordpress-mysql:0.2.0",
+        "digest": "sha256:d4d3344288dd000c7a28e54119cc8f5f6e10eb5c4a9c19ad610614310b169e9d"
       }
     ],
     "images": [],
