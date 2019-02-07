@@ -20,7 +20,7 @@ It demonstrates the following [CNAB Bundle](https://github.com/deislabs/cnab-spe
 
 - Clone this repo and `cd` into it.
 
-      git clone https://github.com/deislabs/bundles.git
+      git clone https://github.com/deislabs/example-bundles.git
       cd bundles/openfaas
 
 - Build the CNAB bundle with `duffle`
