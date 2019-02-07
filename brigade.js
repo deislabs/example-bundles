@@ -1,6 +1,6 @@
 const { events, Job, Group } = require("brigadier")
 
-const projectName = "bundles"
+const projectName = "example-bundles"
 
 // minimal shell env for images w/o git, bash, etc.
 const shellEnv = {
