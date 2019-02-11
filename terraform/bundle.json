@@ -29,5 +29,10 @@
         "ssh_authorized_key": {
             "env": "TF_VAR_ssh_authorized_key"
         }
+    },
+    "actions": {
+        "status": {
+            "modifies": true
+        }
     }
 }

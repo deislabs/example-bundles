@@ -4,7 +4,7 @@ install:
 	@echo "Do Install"
 	@echo $(CNAB_ACTION)
 
-uninstall: 
+uninstall:
 	@echo "Do Uninstall"
 
 upgrade:

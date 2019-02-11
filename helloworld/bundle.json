@@ -13,5 +13,13 @@
             "defaultValue": 8080,
             "type": "int"
         }
+    },
+    "actions": {
+        "downgrade": {
+            "modifies": false
+        },
+        "status": {
+            "modifies": false
+        }
     }
 }

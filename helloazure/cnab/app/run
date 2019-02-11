@@ -3,7 +3,7 @@
 #set -eo pipefail
 
 action=$CNAB_ACTION
-name=$CNAB_INSTALLATION_NAME 
+name=$CNAB_INSTALLATION_NAME
 
 case $action in
     install)
