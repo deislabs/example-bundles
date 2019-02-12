@@ -7,13 +7,13 @@
         "image": "cnab/pulumibase:latest"
         }
     ],
-    "images": [
-        {
+    "images": {
+        "nginx": {
             "description": "image called from within Pulumi script",
             "imageType": "docker",
             "image": "nginx:latest"
         }
-    ],
+    },
     "actions": {
         "status": {
             "modifies": false

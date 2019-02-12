@@ -7,7 +7,6 @@
         "image": "cnab/makebase:latest"
         }
     ],
-    "images": [],
     "parameters": {},
     "credentials": {},
     "actions": {

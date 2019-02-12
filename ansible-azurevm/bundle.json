@@ -7,7 +7,6 @@
         "image": "cnab/ansible-azurevm:latest"
         }
     ],
-    "images": [],
     "parameters": {
         "check": {
             "defaultValue": false,

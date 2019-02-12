@@ -7,7 +7,6 @@
         "image": "cnab/example-credentials:latest"
       }
     ],
-    "images": [],
     "credentials": {
         "secret1": {
             "env" :"SECRET_ONE"

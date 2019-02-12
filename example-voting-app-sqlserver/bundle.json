@@ -7,9 +7,10 @@
         "image": "cnab/example-voting-app-sqlserver:latest"
         }
     ],
-    "images": [
-        {
+    "images": {
+        "redis-cache": {
             "name": "Cache",
+            "description": "redis caching layer",
             "image": "redis:alpine",
             "uri": "redis:alpine",
             "imageType": "docker",
@@ -18,8 +19,9 @@
                 "field": "services.redis.image"
             }
         },
-        {
+        "mysql-database": {
             "name": "Database",
+            "description": "mysql database",
             "image": "microsoft/mssql-server-linux:latest",
             "uri": "microsoft/mssql-server-linux:latest",
             "imageType": "docker",
@@ -28,7 +30,7 @@
                 "field": "services.db.image"
             }
         }
-    ],
+    },
     "parameters": {},
     "credentials": {}
 }

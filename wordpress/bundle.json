@@ -7,7 +7,6 @@
         "image": "cnab/wordpress:latest"
         }
     ],
-    "images": [],
     "parameters": {},
     "credentials": {},
     "actions": {

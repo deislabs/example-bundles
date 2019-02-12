@@ -8,7 +8,6 @@
         "digest": "sha256:9b66eabf77390283b7cd51e7d0c8369f38f3157a54802736eb8eaa7decca3d12"
       }
     ],
-    "images": [],
     "parameters": {
       "domain": {
         "defaultValue": "containernativelabs.io",

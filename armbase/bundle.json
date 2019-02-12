@@ -7,7 +7,6 @@
         "image": "cnab/armbase:0.1.0"
         }
     ],
-    "images": [],
     "parameters": {
         "azure_resource_group": {
             "defaultValue": "armbase-default",

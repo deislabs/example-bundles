@@ -7,18 +7,20 @@
             "image": "cnab/compose:latest"
         }
     ],
-    "images": [
-        {
+    "images": {
+        "wordpress": {
+            "description": "wordpress application",
             "imageType": "docker",
             "image": "wordpress:4.9.8-apache",
             "digest": "sha256:7121cdf8e9f01816653a3b2d2f4fc7bfe1dab956f00db5c7e7689e5f1454029a"
         },
-        {
+        "database": {
+            "description": "mysql database",
             "imageType": "docker",
             "image": "mysql:5.7",
             "digest": "sha256:1d8f471c7e2929ee1e2bfbc1d16fc8afccd2e070afed24805487e726ce601a6d"
         }
-    ],
+},
     "parameters": {},
     "credentials": {},
     "actions": {
