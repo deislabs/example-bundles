@@ -11,7 +11,7 @@ case $action in
     echo "Install action"
     ;;
     uninstall)
-    echo "uninstall action"
+    echo "Uninstall action"
     ;;
     upgrade)
     echo "Upgrade action"
