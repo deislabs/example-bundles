@@ -14,5 +14,10 @@
         "kubeconfig": {
             "path": "/root/.kube/config"
         }
+    },
+    "actions": {
+        "status": {
+            "modifies": false
+        }
     }
 }

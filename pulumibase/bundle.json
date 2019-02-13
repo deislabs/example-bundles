@@ -13,5 +13,10 @@
             "imageType": "docker",
             "image": "nginx:latest"
         }
-    ]
+    ],
+    "actions": {
+        "status": {
+            "modifies": false
+        }
+    }
 }

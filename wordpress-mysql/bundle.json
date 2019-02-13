@@ -44,5 +44,10 @@
       "mysql_password": {
         "env": "MYSQL_PASSWORD"
       }
+    },
+    "actions": {
+        "status": {
+            "modifies": false
+        }
     }
 }

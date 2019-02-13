@@ -2,7 +2,7 @@
 set -e
 
 action=$CNAB_ACTION
-name=$CNAB_INSTALLATION_NAME 
+name=$CNAB_INSTALLATION_NAME
 tfdir=/cnab/app/tf/
 
 # translate_vars translates all env vars prefixed by CNAB_P_ into corresponding TF_VAR_ env vars, as used by Terraform

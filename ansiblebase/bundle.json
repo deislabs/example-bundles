@@ -35,5 +35,10 @@
         "subscription_id": {
             "env": "AZURE_SUBSCRIPTION_ID"
         }
+    },
+    "actions": {
+        "status": {
+            "modifies": false
+        }
     }
 }

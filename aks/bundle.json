@@ -36,5 +36,10 @@
       "azure_cloud_config": {
         "path": "/root/.azure/clouds.config"
       }
+    },
+    "actions": {
+        "status": {
+            "modifies": false
+        }
     }
 }

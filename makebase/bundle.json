@@ -9,5 +9,10 @@
     ],
     "images": [],
     "parameters": {},
-    "credentials": {}
+    "credentials": {},
+    "actions": {
+        "status": {
+            "modifies": false
+        }
+    }
 }
