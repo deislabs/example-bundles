@@ -7,7 +7,6 @@
         "image": "cnab/example-run:latest"
       }
     ],
-    "images": [],
     "parameters": {
         "greeting": {
             "defaultValue": "hello",

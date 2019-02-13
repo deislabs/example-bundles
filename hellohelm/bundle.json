@@ -7,8 +7,8 @@
         "image": "cnab/hellohelm:latest"
         }
     ],
-    "images": [
-        {
+    "images": {
+        "alpine": {
             "description": "alpine",
             "image": "technosophos/demo2alpine:0.1.0",
             "imageType": "docker",
@@ -19,7 +19,7 @@
                 }
             ]
         }
-    ],
+    },
     "parameters": {
         "port": {
             "defaultValue": 8080,

@@ -7,7 +7,6 @@
         "image": "cnab/ansiblebase:latest"
         }
     ],
-    "images": [],
     "parameters": {
         "azure_resource_group": {
             "defaultValue": "armbase-default",
