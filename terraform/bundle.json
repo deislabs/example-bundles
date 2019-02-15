@@ -4,7 +4,10 @@
     "parameters": {
         "backend": {
             "type": "boolean",
-            "defaultValue": false
+            "defaultValue": false,
+            "destination": {
+                "env": "TF_VAR_backend"
+            }
         }
     },
     "invocationImages": [

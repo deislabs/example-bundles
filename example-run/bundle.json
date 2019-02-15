@@ -11,6 +11,9 @@
         "greeting": {
             "defaultValue": "hello",
             "type": "string",
+            "destination": {
+                "env": "GREETING"
+            },
             "metadata":{
                 "description": "this will be in $GREETING"
             }

@@ -10,7 +10,10 @@
     "parameters": {
         "check": {
             "defaultValue": false,
-            "type": "boolean"
+            "type": "boolean",
+            "destination": {
+                "env": "CHECK"
+            }
         }
     },
     "credentials": {

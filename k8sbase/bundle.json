@@ -7,7 +7,15 @@
         "image": "cnab/k8sbase:latest"
         }
     ],
-    "parameters": {},
+    "parameters": {
+        "helm_options": {
+            "defaultValue": "--dry-run --debug",
+            "type": "string",
+            "destination": {
+                "env": "HELM_OPTIONS"
+            }
+        }
+    },
     "credentials": {},
     "actions": {
         "status": {

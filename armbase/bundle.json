@@ -10,11 +10,17 @@
     "parameters": {
         "azure_resource_group": {
             "defaultValue": "armbase-default",
-            "type": "string"
+            "type": "string",
+            "destination": {
+                "env": "AZURE_RESOURCE_GROUP"
+            }
         },
         "azure_location": {
             "defaultValue": "useast",
-            "type": "string"
+            "type": "string",
+            "destination": {
+                "env": "AZURE_LOCATION"
+            }
         }
     },
     "credentials": {
