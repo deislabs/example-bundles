@@ -11,7 +11,7 @@
         },
         "kubernetes_version": {
             "type": "string",
-            "defaultValue": "1.11.3",
+            "defaultValue": "1.12.5",
             "destination": {
                 "env": "TF_VAR_kubernetes_version"
             }
