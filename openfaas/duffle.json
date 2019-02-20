@@ -62,7 +62,10 @@
     "parameters": {
         "basic_auth": {
             "type": "string",
-            "defaultValue": "true"
+            "defaultValue": "true",
+            "destination": {
+                "env": "BASIC_AUTH"
+            }
         }
     },
     "credentials": {

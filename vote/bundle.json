@@ -9,7 +9,15 @@
         "image": "cnab/vote:latest"
         }
     ],
-    "parameters": {},
+    "parameters": {
+        "helm_options": {
+            "defaultValue": "",
+            "type": "string",
+            "destination": {
+                "env": "HELM_OPTIONS"
+            }
+        }
+    },
     "credentials": {
         "kubeconfig": {
             "path": "/root/.kube/config"
