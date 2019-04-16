@@ -11,7 +11,7 @@
     "parameters": {
         "port": {
             "defaultValue": 8080,
-            "type": "int",
+            "type": "integer",
             "destination": {
                 "env": "PORT"
             }

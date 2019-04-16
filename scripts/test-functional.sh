@@ -48,12 +48,12 @@ function test_functional() {
   echo "Executing the 'upgrade' action for the ${bundle} bundle..."
   duffle upgrade "${bundle}-test" \
     -d "${DRIVER}" \
-    -c "${bundle}-test-creds" \
+    -c "${bundle}-test-creds"
 
   echo "Executing the 'uninstall' action for the ${bundle} bundle..."
   duffle uninstall "${bundle}-test" \
     -d "${DRIVER}" \
-    -c "${bundle}-test-creds" \
+    -c "${bundle}-test-creds"
 }
 
 function get_required_params() {
