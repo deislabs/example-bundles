@@ -87,22 +87,6 @@ endif
 docker-run: check-bundle
 	docker run -t $(DOCKER_REGISTRY)/$(BUNDLE):$(VERSION)
 
-.PHONY: sign
-sign: has-duffle
-ifndef BUNDLE
-	$(call bundle-all,sign)
-else
-	duffle bundle sign -f $(BUNDLE)/bundle.json
-endif
-
-.PHONY: sign-local
-sign-local: has-duffle
-ifndef BUNDLE
-	$(call bundle-all,sign-local)
-else
-	duffle bundle sign -f $(BUNDLE)/bundle.json -o $(BUNDLE)/bundle.cnab
-endif
-
 JSON_SCHEMA_URI  := https://api.github.com/repos/deislabs/cnab-spec/contents/schema/bundle.schema.json
 JSON_SCHEMA_FILE := /tmp/bundle.schema.json
 VALIDATOR_IMG    := $(ORG)/$(PROJECT)-ajv
@@ -154,9 +138,6 @@ DRIVER       ?= debug
 
 .PHONY: test-functional
 test-functional:
-ifeq ($(INSECURE),false)
-	make $(MAKE_OPTS) sign-local
-endif
 	DRIVER=$(DRIVER) ./scripts/test-functional.sh
 
 .PHONY: test-functional-docker
@@ -171,7 +152,7 @@ test-functional-docker:
 		-e DRIVER=$(DRIVER) \
 		-e EXPORT_THCK=$(EXPORT_THICK) \
 		-e CHECK=which \
-		$(DUFFLE_IMG) sh -c 'duffle init -u "test@$(ORG)-$(PROJECT).com" && make $(MAKE_OPTS) test-functional'
+		$(DUFFLE_IMG) sh -c 'make $(MAKE_OPTS) test-functional'
 
 .PHONY: clean
 clean:

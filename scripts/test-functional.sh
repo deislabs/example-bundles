@@ -4,18 +4,11 @@ set -eo pipefail
 
 function test_functional() {
   bundle="${1}"
-  bundle_file="${bundle}/bundle.cnab"
-  insecure=""
+  bundle_file="${bundle}/bundle.json"
   params=""
   driver="${DRIVER:-debug}"
   export_format="-t"
   export_dir="$(mktemp -d)"
-
-  if [[ "${INSECURE}" == "true" ]]; then
-    echo "Duffle is running in insecure mode..."
-    bundle_file="${bundle}/bundle.json"
-    insecure="--insecure"
-  fi
 
   if [[ "${EXPORT_THICK}" == "true" ]]; then
     export_format=""
@@ -29,23 +22,23 @@ function test_functional() {
 
   # run tests
   echo "Generating creds for the ${bundle} bundle..."
-  duffle creds generate "${bundle}-test-creds" -f "${bundle_file}" -q ${insecure}
+  duffle creds generate "${bundle}-test-creds" -f "${bundle_file}" -q
 
   # NOTE: When format is thick, duffle export currently fails if can't access docker daemon
   # (this may happen when running inside of a docker container without the socket mounted)
   # As of writing, duffle still requires connection to the daemon for thick exports.
   echo "Exporting the ${bundle} bundle..."
-  duffle export -f "${bundle_file}" -o "${export_dir}/${bundle}.tgz" ${export_format} ${insecure}
+  duffle export -f "${bundle_file}" -o "${export_dir}/${bundle}.tgz" ${export_format}
 
   echo "Importing the ${bundle} bundle..."
-  duffle import "${export_dir}/${bundle}.tgz" -d "${export_dir}" ${insecure}
+  duffle import "${export_dir}/${bundle}.tgz" -d "${export_dir}"
 
   echo "Executing the 'install' action for the ${bundle} bundle..."
   duffle install "${bundle}-test" \
     -d "${DRIVER}" \
     -f "${export_dir}/${bundle_file}" \
     -c "${bundle}-test-creds" \
-    ${params} ${insecure}
+    ${params}
 
   echo "Executing the 'status' action for the ${bundle} bundle..."
   duffle status "${bundle}-test" \
@@ -56,13 +49,11 @@ function test_functional() {
   duffle upgrade "${bundle}-test" \
     -d "${DRIVER}" \
     -c "${bundle}-test-creds" \
-    ${insecure}
 
   echo "Executing the 'uninstall' action for the ${bundle} bundle..."
   duffle uninstall "${bundle}-test" \
     -d "${DRIVER}" \
     -c "${bundle}-test-creds" \
-    ${insecure}
 }
 
 function get_required_params() {
