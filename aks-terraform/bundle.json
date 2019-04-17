@@ -18,7 +18,7 @@
             }
         },
         "agent_count": {
-            "type": "int",
+            "type": "integer",
             "defaultValue": 1,
             "destination": {
                 "env": "TF_VAR_agent_count"

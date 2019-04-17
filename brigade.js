@@ -15,11 +15,8 @@ function testFunctional(e, project) {
 
   test.tasks = [
     "cd /src",
-    // ensure functional tests running in (default) secure mode pass
-    "make test-functional",
-    // ensure functional tests running in insecure mode pass
-    "rm -rf ~/.duffle",
-    "INSECURE=true make test-functional"
+
+    "make test-functional"
   ];
 
   return test
