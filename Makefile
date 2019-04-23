@@ -65,7 +65,7 @@ ifndef BUNDLE
 endif
 
 .PHONY: build
-build: docker-build sign-local
+build: docker-build
 
 .PHONY: docker-build
 docker-build:
