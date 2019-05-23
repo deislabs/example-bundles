@@ -51,7 +51,7 @@ case $action in
         echo 'End point ready:' && echo $external_ip
 
         echo "Creating a DNS a record to point domain at nginx loadbalancer"
-        az network dns record-set a add-record --resource-group duffle-demo --zone-name $DOMAIN --record-set-name @ --ipv4-address $external_ip
+        az network dns record-set a add-record --resource-group $RESOURCE_GROUP --zone-name $DOMAIN --record-set-name @ --ipv4-address $external_ip
         echo "$DOMAIN now points to $external_ip"
 
         echo "Installing kube-lego to manage certificates"
