@@ -12,10 +12,12 @@ RUN apk add --update ca-certificates \
  && rm /var/cache/apk/* \
  && rm -f /helm-${HELM_LATEST_VERSION}-linux-amd64.tar.gz \
  && apk update && \
-  apk add bash py-pip && \
-  apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make && \
-  pip install --upgrade pip && \
-  pip install azure-cli
+  apk add bash py3-pip && \
+  apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make && \
+  pip3 install --upgrade pip && \
+  pip3 install --upgrade requests && \
+  pip3 install azure-cli && \
+  ln -s /usr/bin/python3 /usr/bin/python
 
 COPY app/run /cnab/app/run
 COPY app/rbac-config.yaml /cnab/app/rbac-config.yaml
