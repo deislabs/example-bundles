@@ -1,4 +1,6 @@
-# CNAB bundles
+# (DEPRECATED) CNAB bundles
+
+⛔ **Notice: This repository is deprecated.  Relevant examples have been moved to the [Duffle](https://github.com/cnabio/duffle) CNAB reference implementation repository.  The examples in this repo are no longer maintained.**
 
 This repository contains an array of CNAB bundles. Those that contain `base` in the name
 are base invocation images, intended to be used by other bundles. Most of those are
